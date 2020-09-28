@@ -18,3 +18,13 @@ subprojects {
     plugins.apply 'biz.aQute.bnd'
   }
 }
+plugins {
+  id "org.sonarqube" version "3.0"
+}
+
+sonarqube {
+  properties {
+    property "sonar.projectKey", "spec"
+    property "sonar.organization", "davidyang2015"
+    property "sonar.host.url", "https://sonarcloud.io"
+  }
