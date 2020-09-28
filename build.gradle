@@ -1,0 +1,30 @@
+/*
+ * Master Gradle build script
+ *
+ * Depends on bndWorkspace and bndURI properties set by settings.gradle.
+ */
+
+/* Add bnd as a script dependency */
+buildscript {
+  dependencies {
+    classpath files(bndURI)
+  }
+}
+
+/* Configure the subprojects */
+subprojects {
+  def bndProject = bndWorkspace.getProject(name)
+  if (bndProject != null) {
+    plugins.apply 'biz.aQute.bnd'
+  }
+}
+plugins {
+  id "org.sonarqube" version "3.0"
+}
+
+sonarqube {
+  properties {
+    property "sonar.projectKey", "spec"
+    property "sonar.organization", "davidyang2015"
+    property "sonar.host.url", "https://sonarcloud.io"
+  }
